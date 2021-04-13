@@ -41,6 +41,7 @@ module.exports = env => ({
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './index.html',
+      chunks: ['index', 'main'],
       minify: {
         collapseWhitespace: true,
         removeComments: true,
@@ -53,6 +54,7 @@ module.exports = env => ({
     new HtmlWebpackPlugin({
       filename: 'library.html',
       template: './library.html',
+      chunks: ['library', 'main'],
       minify: {
         collapseWhitespace: true,
         removeComments: true,
