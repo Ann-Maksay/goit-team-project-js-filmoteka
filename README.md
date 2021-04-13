@@ -31,26 +31,7 @@ sudo apt-get install gcc g++ make
 Для быстрого старта необходимо склонировать репозиторий.
 
 ```shell
-git clone https://github.com/luxplanjay/webpack-starter-kit.git
-```
-
-Переименовать папку сборки именем вашего проекта.
-
-```shell
-mv webpack-starter-kit имя_проекта
-```
-
-Затем перейти в папку проекта.
-
-```shell
-cd имя_проекта
-```
-
-Находясь в папке проекта удалить папку `.git` связанную с репозиторием сборки
-выполнив следующую команду.
-
-```shell
-npx rimraf .git
+git clone https://https://github.com/Ann-Maksay/goit-team-project-js-filmoteka
 ```
 
 Установить все зависимости.
