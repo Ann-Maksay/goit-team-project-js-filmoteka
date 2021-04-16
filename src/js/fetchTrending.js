@@ -1,14 +1,17 @@
 import axios from 'axios';
 import genreList from './genre';
+import cartTemp from '../templates/card-film.hbs';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 axios.defaults.params = { api_key: 'aef9cffb51e8fe7e1c3e621e64df0279' }
+const listRef = document.querySelector('.film-list');
 
 
 const trending = {
-    async fetcgTrends() {
-        try {
-            const {data} = await axios.get(`/trending/movie/day?page=1&=9`);
+    page: 1,
+
+    async fetchTrends() {
+            const {data} = await axios.get(`/trending/movie/day?page=${this.page}`);
             const infoList = data.results;
 
             const filmList = [];
@@ -17,11 +20,7 @@ const trending = {
                 filmList.push(film);
             };
             
-            console.log(filmList);
-            
-        } catch (error) {
-            console.log(error);
-        }
+            return filmList;
     },
 
     async makeCard(film) {
@@ -43,19 +42,25 @@ const trending = {
             vote_average: film.vote_average,
             formattedGeners: genre.join(', '),
         }
+    },
+
+    async makeList() {
+        try {
+            const list = await this.fetchTrends();
+        console.log(list);
+
+        const listNoda = cartTemp(list);
+
+        console.log(listNoda);
+
+        listRef.innerHTML = listNoda;
+
+        console.log('bla');
+        return listNoda;
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
-trending.fetcgTrends();
-
-
-
-// В шаблон карточки идут:
-// poster_path - для адреса изображения
-//     < img src = "https://image.tmdb.org/t/p/w300/{{poster_path}}" alt = "{{title}}" >
-//     возможные размеры = "w92", "w154", "w185", "w342", "w500", "w780", "original"
-
-// title - название
-// vote_average - оценка
-// release_date - дата
-// genre - жанры   
+export default trending;
