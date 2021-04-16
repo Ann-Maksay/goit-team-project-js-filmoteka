@@ -39,9 +39,9 @@ const trending = {
             id : film.id,
             title: film.title,
             poster_path: film.poster_path,
-            release_date: year,
+            yearRelease: year,
             vote_average: film.vote_average,
-            genre: genre.join(', '),
+            formattedGeners: genre.join(', '),
         }
     }
 }
