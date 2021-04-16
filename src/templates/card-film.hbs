@@ -1,6 +1,8 @@
+{{#each this}}
 <li class="list-item" data-id="{{id}}">
     <div class="card">
-        <img class="film-img" src="https://image.tmdb.org/t/p/w300{{poster_path}}" alt="">
+        <div class='img-container'><img class="film-img" src="https://image.tmdb.org/t/p/w300{{poster_path}}"
+                alt="{{title}}"></div>
         <h3 class="film-title">{{title}}</h3>
         <div class="description">
             <p class="description-title">{{formattedGeners}}</p>
@@ -9,3 +11,4 @@
         </div>
     </div>
 </li>
+{{/each}}
