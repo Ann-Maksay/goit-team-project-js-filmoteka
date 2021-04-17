@@ -11,7 +11,7 @@ const refs = {
 
 function usePagination(event) {
     const eventTarget = event.target
-    if (eventTarget.nodeName !== 'IMG' || eventTarget.classList.contains('active')) {
+    if (eventTarget.nodeName !== 'SPAN' || eventTarget.classList.contains('active')) {
         return;
     }
 }
