@@ -1,0 +1,8 @@
+.film-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.list-item {
+  margin-bottom: 30px;
+}
