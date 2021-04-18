@@ -14,7 +14,7 @@
     ),
     url(./images/homepage-bg-mobile.jpg);
 
-  .form-button-library {
+  /*.form-button-library {
     display: none !important;
   }
   .form-search-home {
@@ -25,7 +25,7 @@
   }
   .home-link {
     border-bottom: 3px solid $accent-color;
-  }
+  }*/
 
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
@@ -87,7 +87,7 @@
   height: 230px;
   max-width: 100%;
 
-  .form-button-library {
+  /*.form-button-library {
     display: block !important;
   }
   .form-search-home {
@@ -98,7 +98,7 @@
   }
   .home-link {
     border-bottom: none;
-  }
+  }*/
 
   background-color: $primary-text-color;
   background-size: cover;

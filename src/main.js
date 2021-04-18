@@ -1,4 +1,5 @@
 import './main.scss';
+import './HTML/footer.html'
 //import test from './js/example';
 
 // ключ для использования API
