@@ -164,7 +164,7 @@
 }
 
 .conteiner {
-  width: 100%;
+  width: 315px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 20px;
@@ -172,10 +172,12 @@
   text-align: center;
 
   @include for-size(tablet-landscape) {
+    width: 100%;
     padding-left: 76px;
     padding-right: 75px;
   }
   @include for-size(desktop) {
+    max-width: 1024px;
     padding-left: 71px;
     padding-right: 71px;
   }
@@ -224,7 +226,7 @@
   display: flex;
   padding: 0;
   list-style-type: none;
-  margin-right: 72px;
+  margin-right: 0px;
   margin-left: auto;
 }
 .form-search-home {
