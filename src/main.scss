@@ -1,4 +1,9 @@
-@import './sass/test.scss';
+@import './sass/variables';
+@import './sass/mixins';
+@import './sass/layouts/header';
+@import './sass/fonts';
+@import './sass/cmn';
+@import './sass/layouts/footer';
 @import './sass/base.scss';
 @import './sass/card-film.scss';
 @import './sass/queve.scss';
