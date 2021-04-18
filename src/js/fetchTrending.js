@@ -10,7 +10,8 @@ const trending = {
     numberOfPages: 0,
 
     async fetchTrends() {
-        this.numberOfPages = 0;
+        try {
+            this.numberOfPages = 0;
         const {data} = await axios.get(`/trending/movie/day?page=${this.page}`);
         const infoList = data.results;
 
@@ -27,6 +28,9 @@ const trending = {
         };
             
         return filmList;
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     async makeCard(film) {

@@ -1,6 +1,6 @@
 import trending from './fetchTrending';
 import pagination from './pagination';
-import cartTemp from '../templates/card-film.hbs';
+import cartTemp from '../templates/card-film-main.hbs';
 
 const refs = {
     paginationRef: document.querySelector('.js-pagination'),
@@ -9,11 +9,16 @@ const refs = {
 
 
 
-function usePagination(event) {
+async function usePagination(event) {
     const eventTarget = event.target
-    if (eventTarget.nodeName !== 'SPAN' || eventTarget.classList.contains('active')) {
+    if (eventTarget.nodeName !== 'SPAN' || eventTarget.classList.contains('active') || eventTarget.textContent === '...'){
         return;
     }
+
+    trending.page = eventTarget.textContent;
+    await makeList();
+
+    makePagination(trending.page, trending.numberOfPages);
 }
 
 
@@ -23,10 +28,18 @@ async function makeList() {
             const list = await trending.fetchTrends();
             const listNoda = cartTemp(list);
 
-            listRef.innerHTML = listNoda;
+            refs.listRef.innerHTML = listNoda;
 
             return listNoda;
         } catch (error) {
             console.log(error);
         }
 };
+
+async function makePagination(page, numberOfPages) {
+    pagination.currentPage = page;
+    pagination.numberOfPages = numberOfPages;
+    pagination.makeBtns();
+}
+
+makeList();
