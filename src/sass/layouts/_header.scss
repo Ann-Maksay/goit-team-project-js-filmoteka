@@ -230,7 +230,7 @@
 .form-search-home {
   display: block;
   margin-top: 38px;
-  //position: relative;
+  position: relative;
 
   @include for-size(tablet-landscape) {
     width: 336px;
@@ -238,10 +238,13 @@
     margin-right: auto;
   }
 }
+
 .search-img {
+  position: absolute;
   right: 0;
   bottom: 6px;
 }
+
 .search-text {
   width: 100%;
   background-color: transparent;
@@ -354,6 +357,10 @@
   100% {
     transform: translateY(-10px);
   }
+}
+.hover-link:hover {
+  color: $primary-white-color;
+  text-decoration: none;
 }
 
 .logofon {
