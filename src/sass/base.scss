@@ -1,14 +1,6 @@
-html {
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-.container {
+.content-conteiner {
   margin: auto auto;
+  min-height: calc(100vh - 230px - 77px);
   padding-left: 15px;
   padding-right: 15px;
   @media screen and (min-width: 480px) {

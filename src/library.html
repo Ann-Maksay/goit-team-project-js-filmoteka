@@ -19,9 +19,11 @@
           <div class="flex-conteiner">
   
             <div class="logobox">
+              <a href="./index.html" class="hover-link">
               <svg class="logo" width="32" height="32" viewBox="9 0 50 50">
                 <use href="./images/symbol-defs1.svg#icon-film"></use>
               </svg>
+              </a>
             </div>
             <div class="logofon"></div>
             <div class="logo-text">
@@ -38,22 +40,20 @@
             </ul>
           </div>
     
-          <form class="form-button-library is-hidden">
-            <button class="button-library button-library-active active-btn">
+          <div class="form-button-library is-hidden">
+            <button class="button-library button-library-active js-watched-button active-btn">
               WATCHED
             </button>
     
-            <button class="button-library button-library-inactive">QUEUE</button>
-          </form>
+            <button class="button-library button-library-inactive js-queve-button">QUEUE</button>
+          </div>
         </nav>
       </div>
     </div>
     </div>
 
-    <button class="js-queve-button">queve</button>
-
-    <div class='container'>
-        <ul class='film-list' id="data-container">
+    <div class='content-conteiner'>
+        <ul class='film-list' id="data-conteiner">
     
         </ul>
     
@@ -65,7 +65,7 @@
     
     </div>
 
-    <footer>
+    <footer class="bg">
       <!-- шаблон "./HTML/footer.html" -->
     </footer>
     
