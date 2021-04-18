@@ -1,1 +1,6 @@
-@import './sass/layouts/_header.scss';
+@import './sass/variables';
+@import './sass/mixins';
+@import './sass/layouts/header';
+@import './sass/fonts';
+@import './sass/cmn';
+@import './sass/layouts/footer';

@@ -14,6 +14,19 @@
     ),
     url(./images/homepage-bg-mobile.jpg);
 
+  .form-button-library {
+    display: none !important;
+  }
+  .form-search-home {
+    display: flex !important;
+  }
+  .library-link {
+    border-bottom: none;
+  }
+  .home-link {
+    border-bottom: 3px solid $accent-color;
+  }
+
   @media screen and (min-device-pixel-ratio: 2),
     screen and (min-resolution: 192dpi),
     screen and (min-resolution: 2dppx) {
@@ -65,11 +78,27 @@
     }
   }
 }
+//////////////////////////
 
-.header-background-library {
+/////////////////////////////
+
+.header-bg-library {
   padding-top: 46px;
   height: 230px;
   max-width: 100%;
+
+  .form-button-library {
+    display: block !important;
+  }
+  .form-search-home {
+    display: none !important;
+  }
+  .library-link {
+    border-bottom: 3px solid $accent-color;
+  }
+  .home-link {
+    border-bottom: none;
+  }
 
   background-color: $primary-text-color;
   background-size: cover;
@@ -134,7 +163,7 @@
   }
 }
 
-.container {
+.conteiner {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -165,7 +194,7 @@
   }
 }
 
-.flex-container {
+.flex-conteiner {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -176,14 +205,15 @@
   margin-left: 40px;
 }
 
-.item a {
-  border-bottom: 3px solid transparent;
-
-  &.active-el {
-    border-bottom: 3px solid $accent-color;
-  }
+.active-el {
+  border-bottom: 3px solid $accent-color;
 }
-
+.item a:hover {
+  border-bottom: 3px solid $accent-color;
+}
+.item a:active {
+  border-bottom: 3px solid $accent-color;
+}
 .nav-link {
   color: $primary-white-color;
   font-size: 12px;
@@ -197,7 +227,7 @@
   margin-right: 72px;
   margin-left: auto;
 }
-.search-home-box {
+.form-search-home {
   display: block;
   margin-top: 38px;
 
