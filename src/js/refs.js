@@ -6,7 +6,7 @@ headerTitle: document.querySelector('.title'),
 homeLink: document.querySelector('.home-link'),
 libraryLink: document.querySelector('.library-link'),
 footer: document.querySelector('footer'),
-inpuForm: document.querySelector('.search-box-home'),
+inputForm: document.querySelector('.search-box-home'),
 };
 
 export default refs;
