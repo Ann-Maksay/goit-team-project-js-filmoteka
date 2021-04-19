@@ -29,15 +29,16 @@ async function usePagination(event) {
 
     trending.page = Number(eventTarget.textContent);
 
+    window.scrollTo({
+        top: 200,
+        behavior: 'smooth',
+    })
+    
     await makeList();
 
     pagination.currentPage = 0;
     pagination.numberOfPages = 0;
 
-    window.scrollTo({
-        top: 200,
-        behavior: 'smooth',
-    })
 }
 
 async function steapBack() {
