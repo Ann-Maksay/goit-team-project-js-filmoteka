@@ -7,21 +7,58 @@ const refs = {
     listRef: document.querySelector('.film-list'),
 };
 
-
+refs.paginationRef.addEventListener('click', usePagination);
 
 async function usePagination(event) {
     const eventTarget = event.target
-    if (eventTarget.nodeName !== 'SPAN' || eventTarget.classList.contains('active') || eventTarget.textContent === '...'){
+
+    if ((eventTarget.nodeName !== 'SPAN' && eventTarget.nodeName !== 'I')|| eventTarget.classList.contains("active-btn-pg") || eventTarget.textContent === '...'){
         return;
     }
 
-    trending.page = eventTarget.textContent;
+
+    if (eventTarget.classList.contains("js-previous")) {
+        await steapBack();
+        return;
+    }
+    if (eventTarget.classList.contains("js-next")) {
+        await steapForward();
+        return;
+    }
+
+    trending.page = Number(eventTarget.textContent);
+
     await makeList();
 
-    makePagination(trending.page, trending.numberOfPages);
+    pagination.currentPage = 0;
+    pagination.numberOfPages = 0;
 }
 
+async function steapBack() {
+    console.log(trending.page);
+    if (trending.page === 1) {
+        return;
+    }
+    trending.page--;
 
+    await makeList();
+
+    pagination.currentPage = 0;
+    pagination.numberOfPages = 0;
+}
+
+async function steapForward() {
+    console.log(trending.page);
+    if (trending.page === trending.numberOfPages) {
+        return;
+    }
+    trending.page++;
+
+    await makeList();
+
+    pagination.currentPage = 0;
+    pagination.numberOfPages = 0;
+}
 
 async function makeList() {
         try {
@@ -29,6 +66,8 @@ async function makeList() {
             const listNoda = cartTemp(list);
 
             refs.listRef.innerHTML = listNoda;
+
+            makePagination(trending.page, trending.numberOfPages);
 
             return listNoda;
         } catch (error) {
@@ -43,3 +82,4 @@ async function makePagination(page, numberOfPages) {
 }
 
 makeList();
+
