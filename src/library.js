@@ -1,4 +1,5 @@
 import queveListFilms from './js/queve-films';
+import spiner from './js/spiner';
 
 
 const key = 'aef9cffb51e8fe7e1c3e621e64df0279';
@@ -12,6 +13,8 @@ const ulRef = document.querySelector('.film-list');
 // localStorage.setItem('queue', JSON.stringify(queueArry));
 // localStorage.setItem('watched', JSON.stringify(watchedArry));
 
+// localStorage.removeItem('queue');
+
 const listMarkup = () => {
 
   if (buttonWatchedRef.classList.contains('active-btn')) {
@@ -22,12 +25,17 @@ const listMarkup = () => {
   }
 
   ulRef.innerHTML = '';
+  spiner.showSpin();
   if (localStorage.getItem('queue')) {
     const arr = JSON.parse(localStorage.getItem('queue'));
     arr.forEach(id => queveListFilms(id));
   } else {
-    ulRef.innerHTML = 'Ваша очередь пока пуста.';
+    ulRef.insertAdjacentHTML('beforeend',
+        `<div class='error-library-container'>
+        <p class="error-library">Ваша библиотека пока пуста!</p>
+      </div>`)
   }
+  spiner.hideSpin();
 };
 
 buttonQueveRef.addEventListener('click', listMarkup);

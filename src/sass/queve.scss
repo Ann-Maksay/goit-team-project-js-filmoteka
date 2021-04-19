@@ -43,3 +43,19 @@
     }
   }
 }
+
+.error-library-container {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+}
+.error-library {
+  font-family: 'Roboto', sans-serif;
+  font-size: 900;
+  font-size: 30px;
+  line-height: 35px;
+  text-transform: uppercase;
+  color: $main-accent-color;
+}
