@@ -9,7 +9,19 @@
 
 .film-card {
   width: 280px;
-  // height: 443px;
+  height: 100%;
+  border-radius: 5px;
+  transition-property: box-shadow;
+  transition-duration: $mainDuration;
+  transition-timing-function: $timing-function;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+      1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
 }
 
 .film-img {
@@ -31,6 +43,10 @@
   margin-bottom: 0px;
 
   color: #000000;
+
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 .description {
@@ -44,6 +60,10 @@
   line-height: 16px;
   width: 280px;
   padding: 0px;
+
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 .description-title {
