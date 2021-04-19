@@ -1,6 +1,7 @@
 import trending from './fetchTrending';
 import pagination from './pagination';
 import cartTemp from '../templates/card-film-main.hbs';
+import spiner from './spiner';
 
 const refs = {
     paginationRef: document.querySelector('.js-pagination'),
@@ -76,12 +77,13 @@ async function steapForward() {
 }
 
 async function makeList() {
-        try {
+    try {
+        spiner.showSpin();
             const list = await trending.fetchTrends();
             const listNoda = cartTemp(list);
 
             refs.listRef.innerHTML = listNoda;
-
+        spiner.hideSpin();
             makePagination(trending.page, trending.numberOfPages);
 
             return listNoda;
