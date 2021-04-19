@@ -16,6 +16,7 @@ const ulRef = document.querySelector('.film-list');
 // localStorage.setItem('watched', JSON.stringify(watchedArry));
 
 // localStorage.removeItem('queue');
+// localStorage.removeItem('watched');
 
 const listMarkup = () => {
 
@@ -41,13 +42,24 @@ const listMarkup = () => {
 };
 
 const watchedlistMarkup = () => {
+  if (buttonQueveRef.classList.contains('active-btn')) {
+    buttonQueveRef.classList.remove('active-btn');
+  }
+  if (!buttonWatchedRef.classList.contains('active-btn')) {
+    buttonWatchedRef.classList.add('active-btn');
+  }
   ulRef.innerHTML = '';
+  spiner.showSpin();
   if (localStorage.getItem('watched')) {
     const arr = JSON.parse(localStorage.getItem('watched'));
     arr.forEach(id => watchedListFilms(id));
   } else {
-    ulRef.innerHTML = 'Ваш список пока пуст.';
+    ulRef.insertAdjacentHTML('beforeend',
+        `<div class='error-library-container'>
+        <p class="error-library">Ваша библиотека пока пуста!</p>
+      </div>`)
   }
+  spiner.hideSpin();
 };
 
 buttonQueveRef.addEventListener('click', listMarkup);
