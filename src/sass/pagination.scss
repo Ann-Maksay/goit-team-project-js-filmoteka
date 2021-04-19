@@ -1,0 +1,55 @@
+.pagination {
+  margin-bottom: 40px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 60px;
+    width: 374px;
+  }
+}
+
+.page-link {
+  color: $primary-text-color;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+
+  text-align: center;
+  display: flex;
+  align-items: center;
+
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  @media screen and (min-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  &:hover {
+    color: $main-accent-color;
+    text-decoration: none;
+    border-color: transparent;
+    background-color: $secondary-background-color;
+  }
+}
+
+.active-btn-pg {
+  color: $primary-white-color;
+  background-color: $accent-color;
+}
+
+.pagination-sm .page-link {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.bi::before {
+  width: 20px;
+  height: 20px;
+}

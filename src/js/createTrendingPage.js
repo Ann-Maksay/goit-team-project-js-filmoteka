@@ -32,6 +32,11 @@ async function usePagination(event) {
 
     pagination.currentPage = 0;
     pagination.numberOfPages = 0;
+
+    window.scrollTo({
+        top: 200,
+        behavior: 'smooth',
+    })
 }
 
 async function steapBack() {
@@ -45,6 +50,11 @@ async function steapBack() {
 
     pagination.currentPage = 0;
     pagination.numberOfPages = 0;
+
+    window.scrollTo({
+        top: 200,
+        behavior: 'smooth',
+    })
 }
 
 async function steapForward() {
@@ -58,6 +68,11 @@ async function steapForward() {
 
     pagination.currentPage = 0;
     pagination.numberOfPages = 0;
+
+    window.scrollTo({
+        top: 200,
+        behavior: 'smooth',
+    })
 }
 
 async function makeList() {
@@ -78,6 +93,10 @@ async function makeList() {
 async function makePagination(page, numberOfPages) {
     pagination.currentPage = page;
     pagination.numberOfPages = numberOfPages;
+    if (document.body.classList.contains('js-mobile')) {
+        pagination.makeMobileBtns();
+        return
+    }
     pagination.makeBtns();
 }
 

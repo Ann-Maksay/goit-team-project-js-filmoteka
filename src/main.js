@@ -5,3 +5,6 @@ import './js/footer.js';
 // ключ для использования API
 //const key = 'aef9cffb51e8fe7e1c3e621e64df0279';
 
+if (window.innerWidth <= 767) {
+    document.body.classList.add('js-mobile');
+}
