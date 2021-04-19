@@ -26,6 +26,24 @@ const pagination = {
         this.changeActive();
     },
 
+    makeMobileBtns() {
+        if (this.numberOfPages <= 5 || this.currentPage <= 3) {
+            console.log("short");
+            this.makeShortMobalList();
+            this.changeActive();
+            return;
+        }
+        if (this.currentPage + 4 >= this.numberOfPages) {
+            console.log("reverse");
+            this.makeReverseShortList();
+            this.changeActive();
+            return;
+        }
+        console.log("midlle");
+        this.makeShortMiddleList();
+        this.changeActive();
+    },
+
     makeMiddleOfList() {
         const arryBtn = [1, "...", this.currentPage - 2, this.currentPage - 1, this.currentPage, this.currentPage + 1, this.currentPage + 2, '...', this.numberOfPages];
         // console.log(arryBtn);
@@ -48,6 +66,33 @@ const pagination = {
     makeShortList() {
         const arryBtn = [];
         for (let count = 1; count <= this.numberOfPages; count++){
+            arryBtn.push(count);
+        }
+        const btnsList = btnTemp(arryBtn);
+        paginationRef.innerHTML = btnsList;
+    },
+
+    makeShortMobalList() {
+        const arryBtn = [];
+        for (let count = 1; count <= 5; count++){
+            arryBtn.push(count);
+        }
+        const btnsList = btnTemp(arryBtn);
+        paginationRef.innerHTML = btnsList;
+    },
+
+    makeReverseShortList() {
+        const arryBtn = [];
+        for (let count = 4; count >= 0; count--){
+            arryBtn.push(this.numberOfPages - count);
+        }
+        const btnsList = btnTemp(arryBtn);
+        paginationRef.innerHTML = btnsList;
+    },
+
+    makeShortMiddleList() {
+        const arryBtn = [];
+        for (let count = this.currentPage - 2; count <= this.currentPage + 2; count++){
             arryBtn.push(count);
         }
         const btnsList = btnTemp(arryBtn);

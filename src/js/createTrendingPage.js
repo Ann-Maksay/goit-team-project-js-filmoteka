@@ -93,6 +93,10 @@ async function makeList() {
 async function makePagination(page, numberOfPages) {
     pagination.currentPage = page;
     pagination.numberOfPages = numberOfPages;
+    if (document.body.classList.contains('js-mobile')) {
+        pagination.makeMobileBtns();
+        return
+    }
     pagination.makeBtns();
 }
 
