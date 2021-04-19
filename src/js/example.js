@@ -1,5 +1,4 @@
 // <!-- код для теста сборки, потом будет удаляться -->
-
-a {
-  font-size: 40px;
-}
+//export default function test() {
+// console.log('Hi! I`m a test log');
+//}
