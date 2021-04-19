@@ -50,6 +50,11 @@ async function steapBack() {
 
     pagination.currentPage = 0;
     pagination.numberOfPages = 0;
+
+    window.scrollTo({
+        top: 200,
+        behavior: 'smooth',
+    })
 }
 
 async function steapForward() {
@@ -63,6 +68,11 @@ async function steapForward() {
 
     pagination.currentPage = 0;
     pagination.numberOfPages = 0;
+
+    window.scrollTo({
+        top: 200,
+        behavior: 'smooth',
+    })
 }
 
 async function makeList() {
