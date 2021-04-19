@@ -54,6 +54,7 @@
     "bootstrap-icons": "^1.4.1",
     "core-js": "^3.6.5",
     "handlebars": "^4.7.6",
+    "lodash": "^4.17.21",
     "paginationjs": "^2.1.5"
   }
 }
