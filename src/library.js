@@ -1,4 +1,6 @@
 import queveListFilms from './js/queve-films';
+import watchedListFilms from './js/watched-films.js';
+
 import spiner from './js/spiner';
 
 
@@ -38,5 +40,16 @@ const listMarkup = () => {
   spiner.hideSpin();
 };
 
-buttonQueveRef.addEventListener('click', listMarkup);
+const watchedlistMarkup = () => {
+  ulRef.innerHTML = '';
+  if (localStorage.getItem('watched')) {
+    const arr = JSON.parse(localStorage.getItem('watched'));
+    arr.forEach(id => watchedListFilms(id));
+  } else {
+    ulRef.innerHTML = 'Ваш список пока пуст.';
+  }
+};
 
+buttonQueveRef.addEventListener('click', listMarkup);
+buttonWatchedRef.addEventListener('click', watchedlistMarkup);
+watchedlistMarkup();
