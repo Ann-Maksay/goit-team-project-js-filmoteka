@@ -1,6 +1,7 @@
 import './main.scss';
 import './js/footer.js';
 import './js/backToTop';
+import './js/modal'
 //import test from './js/example';
 
 // ключ для использования API
