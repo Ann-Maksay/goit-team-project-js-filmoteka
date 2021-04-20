@@ -4,104 +4,106 @@ import cartTemp from '../templates/card-film-main.hbs';
 import spiner from './spiner';
 
 const refs = {
-    paginationRef: document.querySelector('.js-pagination'),
-    listRef: document.querySelector('.film-list'),
+  paginationRef: document.querySelector('.js-pagination'),
+  listRef: document.querySelector('.film-list'),
 };
 
 refs.paginationRef.addEventListener('click', usePagination);
+pagination.paginationRef = document.querySelector('.js-pagination');
 
 async function usePagination(event) {
-    const eventTarget = event.target
+  const eventTarget = event.target;
 
-    if ((eventTarget.nodeName !== 'SPAN' && eventTarget.nodeName !== 'I')|| eventTarget.classList.contains("active-btn-pg") || eventTarget.textContent === '...'){
-        return;
-    }
+  if (
+    (eventTarget.nodeName !== 'SPAN' && eventTarget.nodeName !== 'I') ||
+    eventTarget.classList.contains('active-btn-pg') ||
+    eventTarget.textContent === '...'
+  ) {
+    return;
+  }
 
+  if (eventTarget.classList.contains('js-previous')) {
+    await steapBack();
+    return;
+  }
+  if (eventTarget.classList.contains('js-next')) {
+    await steapForward();
+    return;
+  }
 
-    if (eventTarget.classList.contains("js-previous")) {
-        await steapBack();
-        return;
-    }
-    if (eventTarget.classList.contains("js-next")) {
-        await steapForward();
-        return;
-    }
+  trending.page = Number(eventTarget.textContent);
 
-    trending.page = Number(eventTarget.textContent);
+  window.scrollTo({
+    top: 200,
+    behavior: 'smooth',
+  });
 
-    window.scrollTo({
-        top: 200,
-        behavior: 'smooth',
-    })
-    
-    await makeList();
+  await makeList();
 
-    pagination.currentPage = 0;
-    pagination.numberOfPages = 0;
-
+  pagination.currentPage = 0;
+  pagination.numberOfPages = 0;
 }
 
 async function steapBack() {
-    console.log(trending.page);
-    if (trending.page === 1) {
-        return;
-    }
-    trending.page--;
+  console.log(trending.page);
+  if (trending.page === 1) {
+    return;
+  }
+  trending.page--;
 
-    await makeList();
+  await makeList();
 
-    pagination.currentPage = 0;
-    pagination.numberOfPages = 0;
+  pagination.currentPage = 0;
+  pagination.numberOfPages = 0;
 
-    window.scrollTo({
-        top: 200,
-        behavior: 'smooth',
-    })
+  window.scrollTo({
+    top: 200,
+    behavior: 'smooth',
+  });
 }
 
 async function steapForward() {
-    console.log(trending.page);
-    if (trending.page === trending.numberOfPages) {
-        return;
-    }
-    trending.page++;
+  console.log(trending.page);
+  if (trending.page === trending.numberOfPages) {
+    return;
+  }
+  trending.page++;
 
-    await makeList();
+  await makeList();
 
-    pagination.currentPage = 0;
-    pagination.numberOfPages = 0;
+  pagination.currentPage = 0;
+  pagination.numberOfPages = 0;
 
-    window.scrollTo({
-        top: 200,
-        behavior: 'smooth',
-    })
+  window.scrollTo({
+    top: 200,
+    behavior: 'smooth',
+  });
 }
 
 async function makeList() {
-    try {
-        spiner.showSpin();
-            const list = await trending.fetchTrends();
-            const listNoda = cartTemp(list);
+  try {
+    spiner.showSpin();
+    const list = await trending.fetchTrends();
+    const listNoda = cartTemp(list);
 
-            refs.listRef.innerHTML = listNoda;
-        spiner.hideSpin();
-            makePagination(trending.page, trending.numberOfPages);
+    refs.listRef.innerHTML = listNoda;
+    spiner.hideSpin();
+    makePagination(trending.page, trending.numberOfPages);
 
-            return listNoda;
-        } catch (error) {
-            console.log(error);
-        }
-};
+    return listNoda;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 async function makePagination(page, numberOfPages) {
-    pagination.currentPage = page;
-    pagination.numberOfPages = numberOfPages;
-    if (document.body.classList.contains('js-mobile')) {
-        pagination.makeMobileBtns();
-        return
-    }
-    pagination.makeBtns();
+  pagination.currentPage = page;
+  pagination.numberOfPages = numberOfPages;
+  if (document.body.classList.contains('js-mobile')) {
+    pagination.makeMobileBtns();
+    return;
+  }
+  pagination.makeBtns();
 }
 
 makeList();
-
