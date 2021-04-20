@@ -27,19 +27,13 @@
       </div>
 
       <form class="form-search-home">
-        <input type="text" class="search-text" name="query"  placeholder="Поиск фильмов" />
+        <input type="text" class="search-text js-search-input" name="query"  placeholder="Поиск фильмов" />
         
           <img class="search-img" src="../images/search.svg" alt="Поиск" />
      
       </form>
 
-      <form class="form-button-library is-hidden">
-        <button class="button-library button-library-active active-btn">
-          WATCHED
-        </button>
-
-        <button class="button-library button-library-inactive">QUEUE</button>
-      </form>
+      <p class="search-error is-hidden" id="searchError">Search result not successful. Enter the correct movie name and try again</p>
     </nav>
   </div>
 </div>
