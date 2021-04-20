@@ -1,7 +1,6 @@
 import debounce from 'lodash.debounce';
 
 import fetchFilms from './fetchFilms';
-import checkFilms from './checkFilms';
 import refs from './refs.js';
 
 refs.searchInput.addEventListener(
@@ -15,7 +14,7 @@ refs.searchInput.addEventListener(
     refs.countriesContainer.innerHTML = '';
 
     if (inputValue.length > 0) {
-      fetchFilms(inputValue).then(checkFilms);
+      fetchFilms(inputValue);
     }
   }, 500),
 );
