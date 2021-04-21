@@ -1,8 +1,5 @@
 import libraryMarkap from './libraryMarkup';
 
-const buttonQueveRef = document.querySelector('.js-queve-button');
-const buttonWatchedRef = document.querySelector('.js-watched-button');
-
 const btnFunction = {
   handleBtnWatched(event) {
     const eventTarget = event.target;
@@ -77,7 +74,6 @@ const addDelFunctions = {
           libraryMarkap.queueListMarkup();
         }
       }
-      return;
     }
 
     eventTarget.classList.replace('add-btn', 'delete-btn');
