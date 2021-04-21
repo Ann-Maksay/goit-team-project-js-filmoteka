@@ -17,7 +17,8 @@ const libraryMarkap = {
 
     ulRef.innerHTML = '';
     spiner.showSpin();
-    if (localStorage.getItem('queue')) {
+    const arry = [...JSON.parse(localStorage.getItem('queue'))];
+    if (arry.length > 0) {
       const arr = JSON.parse(localStorage.getItem('queue'));
       arr.forEach(id => queveListFilms(id));
     } else {
@@ -40,7 +41,8 @@ const libraryMarkap = {
     }
     ulRef.innerHTML = '';
     spiner.showSpin();
-    if (localStorage.getItem('watched')) {
+    const arry = [...JSON.parse(localStorage.getItem('watched'))];
+    if (arry.length > 0) {
       const arr = JSON.parse(localStorage.getItem('watched'));
       arr.forEach(id => watchedListFilms(id));
     } else {
