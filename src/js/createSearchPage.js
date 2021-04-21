@@ -3,17 +3,8 @@ import _ from 'lodash';
 import pagination from './pagination';
 import cartTemp from '../templates/card-film-main.hbs';
 import spiner from './spiner';
-
-const refs = {
-  searchInput: document.querySelector('.js-search-input'),
-  formRef: document.querySelector('.form-search-home'),
-  filmsContainer: document.querySelector('.js-films'),
-  searchPagination: document.querySelector('.search-pagination'),
-  paginationRef: document.querySelector('.js-pagination'),
-  errorRef: document.querySelector('#searchError'),
-};
-
-export default refs;
+import refs from './refs';
+import createTrendList from './createTrendingPage';
 
 const optimazeSearch = _.debounce(searchFilm, 700);
 
@@ -69,7 +60,6 @@ async function searchFilm(event) {
 }
 
 async function steapBackSearch() {
-  console.log(searching.page);
   if (searching.page === 1) {
     return;
   }
@@ -87,7 +77,6 @@ async function steapBackSearch() {
 }
 
 async function steapForwardSearch() {
-  console.log(searching.page);
   if (searching.page === searching.numberOfPages) {
     return;
   }
@@ -110,12 +99,11 @@ async function makeSearchList() {
     const list = await searching.fetchQuery();
     if (!list) {
       refs.filmsContainer.innerHTML = ' ';
+      await createTrendList.makeList();
       spiner.hideSpin();
-      console.log(refs.errorRef);
       if (refs.errorRef.classList.contains('is-hidden')) {
         refs.errorRef.classList.remove('is-hidden');
       }
-      makeSearchPagination(searching.page, searching.numberOfPages);
       return;
     }
 
