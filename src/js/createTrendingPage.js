@@ -2,14 +2,72 @@ import trending from './fetchTrending';
 import pagination from './pagination';
 import cartTemp from '../templates/card-film-main.hbs';
 import spiner from './spiner';
+import refs from './refs';
 
-const refs = {
-  paginationRef: document.querySelector('.js-pagination'),
-  listRef: document.querySelector('.film-list'),
+const createTrendList = {
+  async steapBack() {
+    if (trending.page === 1) {
+      return;
+    }
+    trending.page--;
+
+    await this.makeList();
+
+    pagination.currentPage = 0;
+    pagination.numberOfPages = 0;
+
+    window.scrollTo({
+      top: 200,
+      behavior: 'smooth',
+    });
+  },
+
+  async steapForward() {
+    if (trending.page === trending.numberOfPages) {
+      return;
+    }
+    trending.page++;
+
+    await this.makeList();
+
+    pagination.currentPage = 0;
+    pagination.numberOfPages = 0;
+
+    window.scrollTo({
+      top: 200,
+      behavior: 'smooth',
+    });
+  },
+
+  async makeList() {
+    try {
+      spiner.showSpin();
+      const list = await trending.fetchTrends();
+      const listNoda = cartTemp(list);
+
+      refs.listRef.innerHTML = listNoda;
+      spiner.hideSpin();
+      this.makePagination(trending.page, trending.numberOfPages);
+
+      return listNoda;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async makePagination(page, numberOfPages) {
+    pagination.currentPage = page;
+    pagination.numberOfPages = numberOfPages;
+    pagination.paginationRef = document.querySelector('.js-pagination');
+    refs.paginationRef.classList.remove('is-hidden');
+    refs.searchPagination.classList.add('is-hidden');
+    if (document.body.classList.contains('js-mobile')) {
+      pagination.makeMobileBtns();
+      return;
+    }
+    pagination.makeBtns();
+  },
 };
-
-refs.paginationRef.addEventListener('click', usePagination);
-pagination.paginationRef = document.querySelector('.js-pagination');
 
 async function usePagination(event) {
   const eventTarget = event.target;
@@ -23,11 +81,11 @@ async function usePagination(event) {
   }
 
   if (eventTarget.classList.contains('js-previous')) {
-    await steapBack();
+    await createTrendList.steapBack();
     return;
   }
   if (eventTarget.classList.contains('js-next')) {
-    await steapForward();
+    await createTrendList.steapForward();
     return;
   }
 
@@ -38,72 +96,15 @@ async function usePagination(event) {
     behavior: 'smooth',
   });
 
-  await makeList();
+  await createTrendList.makeList();
 
   pagination.currentPage = 0;
   pagination.numberOfPages = 0;
 }
 
-async function steapBack() {
-  console.log(trending.page);
-  if (trending.page === 1) {
-    return;
-  }
-  trending.page--;
+refs.paginationRef.addEventListener('click', usePagination);
+pagination.paginationRef = document.querySelector('.js-pagination');
 
-  await makeList();
+createTrendList.makeList();
 
-  pagination.currentPage = 0;
-  pagination.numberOfPages = 0;
-
-  window.scrollTo({
-    top: 200,
-    behavior: 'smooth',
-  });
-}
-
-async function steapForward() {
-  console.log(trending.page);
-  if (trending.page === trending.numberOfPages) {
-    return;
-  }
-  trending.page++;
-
-  await makeList();
-
-  pagination.currentPage = 0;
-  pagination.numberOfPages = 0;
-
-  window.scrollTo({
-    top: 200,
-    behavior: 'smooth',
-  });
-}
-
-async function makeList() {
-  try {
-    spiner.showSpin();
-    const list = await trending.fetchTrends();
-    const listNoda = cartTemp(list);
-
-    refs.listRef.innerHTML = listNoda;
-    spiner.hideSpin();
-    makePagination(trending.page, trending.numberOfPages);
-
-    return listNoda;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function makePagination(page, numberOfPages) {
-  pagination.currentPage = page;
-  pagination.numberOfPages = numberOfPages;
-  if (document.body.classList.contains('js-mobile')) {
-    pagination.makeMobileBtns();
-    return;
-  }
-  pagination.makeBtns();
-}
-
-makeList();
+export default createTrendList;

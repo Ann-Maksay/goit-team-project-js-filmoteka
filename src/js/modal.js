@@ -9,8 +9,6 @@ const refs = {
   filmCardRef: document.querySelector('#data-conteiner'),
 };
 
-console.log('FILMCARDREF>>', refs.filmCardRef);
-
 const fetchDetails = async id => {
   try {
     const { data } = await axios.get(`/movie/${id}&append_to_response=images`);
@@ -116,7 +114,6 @@ const closeModal = e => {
       e.currentTarget === e.target ||
       e.currentTarget.classList.contains('modal_close_btn')
     ) {
-      console.log(e.code);
       refs.modalRef.classList.add('dn');
       refs.contentRef.innerHTML = '';
       state.isActive = false;
