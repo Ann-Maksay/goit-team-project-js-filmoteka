@@ -1,4 +1,6 @@
 import axios from 'axios';
+import btnFunction from './modalsBtns';
+
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 axios.defaults.params = { api_key: 'c8971b346877ee4bba0d277ad44911fe' };
 
@@ -37,6 +39,7 @@ const createTemplate = async id => {
     return acc + ' ' + el.name;
   }, ``);
 
+  //код для слушателей на кнопки модалки. делал другой человек
   let queueClass = 'add-btn';
   let watchedClass = 'add-btn';
   let queueMessage = 'ADD TO QUEUE';
@@ -62,6 +65,7 @@ const createTemplate = async id => {
       watchedMessage = 'ADD TO WATCHED';
     }
   }
+  //конец
 
   refs.contentRef.insertAdjacentHTML(
     'beforeend',
@@ -92,11 +96,19 @@ const createTemplate = async id => {
                             <article class="modal_article">${overview}</article>
                         </li>
                         <li class="button_cont">
-                            <button class="modal_btn ${watchedClass}">${watchedMessage}</button>
-                            <button class="modal_btn ${queueClass}">${queueMessage}</button>
+                            <button class="modal_btn watched-btn ${watchedClass}" data-id="${id}">${watchedMessage}</button>
+                            <button class="modal_btn queue-btn ${queueClass}" data-id="${id}">${queueMessage}</button>
                         </li>
                     </ul></div>`,
   );
+
+  //код для слушателей на кнопки модалки. делал другой человек
+  const watchedBtn = document.querySelector('.watched-btn');
+  const queueBtn = document.querySelector('.queue-btn');
+
+  watchedBtn.addEventListener('click', btnFunction.handleBtnWatched);
+  queueBtn.addEventListener('click', btnFunction.handleBtnQueue);
+  //конец
 };
 
 const openModal = async e => {
@@ -114,6 +126,13 @@ const closeModal = e => {
       e.currentTarget === e.target ||
       e.currentTarget.classList.contains('modal_close_btn')
     ) {
+      //код для слушателей на кнопки модалки. делал другой человек
+      const watchedBtn = document.querySelector('.watched-btn');
+      const queueBtn = document.querySelector('.queue-btn');
+
+      watchedBtn.removeEventListener('click', btnFunction.handleBtnWatched);
+      queueBtn.removeEventListener('click', btnFunction.handleBtnQueue);
+      //конец
       refs.modalRef.classList.add('dn');
       refs.contentRef.innerHTML = '';
       state.isActive = false;
