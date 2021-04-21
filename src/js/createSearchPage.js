@@ -3,14 +3,20 @@ import _ from 'lodash';
 import pagination from './pagination';
 import cartTemp from '../templates/card-film-main.hbs';
 import spiner from './spiner';
-import refs from './refs';
 import createTrendList from './createTrendingPage';
 
 const optimazeSearch = _.debounce(searchFilm, 700);
 
-refs.searchInput.addEventListener('input', optimazeSearch);
-refs.formRef.addEventListener('submit', searchFilm);
-refs.searchPagination.addEventListener('click', searchFilm);
+const errorRef = document.querySelector('#searchError');
+const searchPagination = document.querySelector('.search-pagination');
+const searchInput = document.querySelector('.js-search-input');
+const formRef = document.querySelector('.form-search-home');
+const filmsContainer = document.querySelector('.js-films');
+const paginationRef = document.querySelector('.js-pagination');
+
+searchInput.addEventListener('input', optimazeSearch);
+formRef.addEventListener('submit', searchFilm);
+searchPagination.addEventListener('click', searchFilm);
 
 async function searchFilm(event) {
   event.preventDefault();
@@ -18,8 +24,8 @@ async function searchFilm(event) {
   const eventTarget = event.target;
   const inputValue = eventTarget.value;
 
-  if (!refs.errorRef.classList.contains('is-hidden')) {
-    refs.errorRef.classList.add('is-hidden');
+  if (!errorRef.classList.contains('is-hidden')) {
+    errorRef.classList.add('is-hidden');
   }
 
   if (
@@ -33,7 +39,7 @@ async function searchFilm(event) {
     return;
   }
 
-  searching.searchQuery = refs.searchInput.value;
+  searching.searchQuery = searchInput.value;
 
   if (eventTarget.classList.contains('js-previous')) {
     await steapBackSearch();
@@ -98,18 +104,18 @@ async function makeSearchList() {
     spiner.showSpin();
     const list = await searching.fetchQuery();
     if (!list) {
-      refs.filmsContainer.innerHTML = ' ';
+      filmsContainer.innerHTML = ' ';
       await createTrendList.makeList();
       spiner.hideSpin();
-      if (refs.errorRef.classList.contains('is-hidden')) {
-        refs.errorRef.classList.remove('is-hidden');
+      if (errorRef.classList.contains('is-hidden')) {
+        errorRef.classList.remove('is-hidden');
       }
       return;
     }
 
     const listNoda = cartTemp(list);
 
-    refs.filmsContainer.innerHTML = listNoda;
+    filmsContainer.innerHTML = listNoda;
     spiner.hideSpin();
     makeSearchPagination(searching.page, searching.numberOfPages);
 
@@ -120,9 +126,9 @@ async function makeSearchList() {
 }
 
 async function makeSearchPagination(page, numberOfPages) {
-  pagination.paginationRef = refs.searchPagination;
-  refs.paginationRef.classList.add('is-hidden');
-  refs.searchPagination.classList.remove('is-hidden');
+  pagination.paginationRef = searchPagination;
+  paginationRef.classList.add('is-hidden');
+  searchPagination.classList.remove('is-hidden');
   pagination.currentPage = page;
   pagination.numberOfPages = numberOfPages;
   if (document.body.classList.contains('js-mobile')) {
