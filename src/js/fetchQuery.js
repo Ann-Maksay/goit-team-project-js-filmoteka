@@ -41,7 +41,12 @@ const searching = {
   },
 
   async makeCard(film) {
-    const year = film.release_date.slice(0, 4);
+    let year = '';
+    if (film.release_date !== undefined) {
+      year = film.release_date.slice(0, 4);
+    } else {
+      year = '???';
+    }
 
     const ganreList = await genreList();
 

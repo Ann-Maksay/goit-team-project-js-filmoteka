@@ -38,18 +38,15 @@ const pagination = {
 
   makeMobileBtns() {
     if (this.numberOfPages <= 5 || this.currentPage <= 3) {
-      console.log('short');
       this.makeShortMobalList();
       this.changeActive();
       return;
     }
     if (this.currentPage + 4 >= this.numberOfPages) {
-      console.log('reverse');
       this.makeReverseShortList();
       this.changeActive();
       return;
     }
-    console.log('midlle');
     this.makeShortMiddleList();
     this.changeActive();
   },
