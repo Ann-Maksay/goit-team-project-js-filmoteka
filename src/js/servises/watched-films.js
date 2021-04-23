@@ -1,11 +1,11 @@
-import cardMarkup from '../templates/card-film.hbs';
+import cardMarkup from '../../templates/card-film.hbs';
 
 const key = 'aef9cffb51e8fe7e1c3e621e64df0279';
 const ulRef = document.querySelector('.film-list');
 
-const queveListFilms = id => {
+const watchedListFilms = id => {
   return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}`)
-    .then(resolve => resolve.json())
+    .then(res => res.json())
     .then(data => {
       data.formattedGeners = data.genres.map(item => item.name).join(', ');
       const [year, month, day] = data.release_date.split('-');
@@ -15,4 +15,4 @@ const queveListFilms = id => {
     });
 };
 
-export default queveListFilms;
+export default watchedListFilms;

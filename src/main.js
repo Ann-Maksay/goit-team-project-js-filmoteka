@@ -1,6 +1,6 @@
 import './main.scss';
-import './js/footer.js';
-import './js/backToTop';
+import './js/layouts/footer.js';
+import './js/features/backToTop';
 import './js/modal';
 
 if (window.innerWidth <= 767) {

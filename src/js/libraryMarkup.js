@@ -1,6 +1,6 @@
-import queveListFilms from './queve-films';
-import watchedListFilms from './watched-films.js';
-import spiner from './spiner';
+import queveListFilms from './servises/queve-films';
+import watchedListFilms from './servises/watched-films.js';
+import spiner from './features/spiner';
 
 const buttonQueveRef = document.querySelector('.js-queve-button');
 const buttonWatchedRef = document.querySelector('.js-watched-button');

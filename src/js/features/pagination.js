@@ -1,4 +1,4 @@
-import btnTemp from '../templates/pagination.hbs';
+import btnTemp from '../../templates/pagination.hbs';
 
 // const paginationRef = document.querySelector('.js-pagination');
 

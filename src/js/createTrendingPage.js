@@ -1,7 +1,7 @@
-import trending from './fetchTrending';
-import pagination from './pagination';
+import trending from './servises/fetchTrending';
+import pagination from './features/pagination';
 import cartTemp from '../templates/card-film-main.hbs';
-import spiner from './spiner';
+import spiner from './features/spiner';
 import refs from './refs';
 
 const createTrendList = {

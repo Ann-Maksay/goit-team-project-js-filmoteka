@@ -1,6 +1,6 @@
-import markupFooter from '../HTML/footer.html';
+import markupFooter from '../../HTML/footer.html';
 
-import refs from './refs.js';
+import refs from '../refs.js';
 
 refs.footer.insertAdjacentHTML('afterbegin', markupFooter);
 
@@ -15,7 +15,7 @@ lightboxOverlayRef.addEventListener('click', onCloseModal);
 function onOpenModal(event) {
   event.preventDefault();
   lightboxRef.classList.add('is-open');
-    refs.body.classList.add('content-hidden')
+  refs.body.classList.add('content-hidden');
 
   window.addEventListener('keydown', onCloseModalESC);
 }
@@ -23,7 +23,7 @@ function onOpenModal(event) {
 function onCloseModal() {
   lightboxRef.classList.remove('is-open');
 
-  refs.body.classList.remove('content-hidden')
+  refs.body.classList.remove('content-hidden');
 
   window.removeEventListener('keydown', onCloseModalESC);
 }

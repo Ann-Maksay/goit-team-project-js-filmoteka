@@ -1,8 +1,8 @@
-import searching from './fetchQuery';
+import searching from './servises/fetchQuery';
 import _ from 'lodash';
-import pagination from './pagination';
+import pagination from './features/pagination';
 import cartTemp from '../templates/card-film-main.hbs';
-import spiner from './spiner';
+import spiner from './features/spiner';
 import createTrendList from './createTrendingPage';
 
 const optimazeSearch = _.debounce(searchFilm, 700);
